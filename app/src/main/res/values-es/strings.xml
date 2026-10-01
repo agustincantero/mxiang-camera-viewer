@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mxiang Camera Viewer</string>
+
+    <!-- Acciones comunes -->
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_sign_out">Cerrar sesión</string>
+    <string name="action_refresh">Actualizar</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_continue">Continuar</string>
+
+    <!-- Inicio de sesión -->
+    <string name="login_title">Inicia sesión para ver tus cámaras</string>
+    <string name="login_subtitle">Usa tu cuenta de Xiaomi.</string>
+    <string name="login_field_user">Correo o teléfono</string>
+    <string name="login_field_password">Contraseña</string>
+    <string name="login_region_label">Región</string>
+    <string name="login_region_title">Elige tu región</string>
+    <string name="login_action">Iniciar sesión</string>
+    <string name="login_hint_challenge">Si Xiaomi pide un captcha o un código de dos pasos, aparece aquí.</string>
+    <string name="login_working">Iniciando sesión…</string>
+    <string name="login_captcha_title">Escribe las letras que ves</string>
+    <string name="login_captcha_subtitle">Xiaomi quiere comprobar que no eres un robot. Escribe las letras que aparecen en la imagen.</string>
+    <string name="login_captcha_field">Captcha</string>
+    <string name="login_verify_title">Ingresa el código de verificación</string>
+    <string name="login_verify_sent">Xiaomi envió un código a %1$s.</string>
+    <string name="login_verify_sent_unknown">Xiaomi te envió un código de verificación.</string>
+    <string name="login_verify_field">Código</string>
+    <string name="login_error">No se pudo iniciar sesión: %1$s</string>
+    <string name="login_session_expired">Tu sesión venció. Inicia sesión de nuevo.</string>
+    <string name="login_missing_fields">Ingresa tu correo o teléfono y tu contraseña.</string>
+
+    <!-- Regiones -->
+    <string name="region_default">China (predeterminada)</string>
+    <string name="region_de">Alemania (Europa)</string>
+    <string name="region_i2">India</string>
+    <string name="region_ru">Rusia</string>
+    <string name="region_sg">Singapur</string>
+    <string name="region_us">Estados Unidos</string>
+
+    <!-- Cámaras -->
+    <string name="cameras_title">Cámaras</string>
+    <string name="cameras_loading">Buscando tus cámaras…</string>
+    <string name="cameras_empty">No se encontraron cámaras en esta cuenta.</string>
+    <string name="cameras_error">No se pudieron cargar las cámaras: %1$s</string>
+    <string name="cameras_lens_2">%1$s (lente 2)</string>
+    <string name="cameras_detail">%1$s · %2$s</string>
+    <string name="cameras_address_unknown">dirección no informada</string>
+    <string name="cd_camera">Cámara</string>
+    <string name="cd_refresh">Actualizar cámaras</string>
+    <string name="cd_favorite_camera">Cámara favorita</string>
+    <string name="cd_account">Cuenta</string>
+
+    <!-- Cuenta -->
+    <string name="account_title">Cuenta</string>
+    <string name="account_user_id">ID de usuario</string>
+    <string name="account_region">Región</string>
+    <string name="about_button">Acerca de</string>
+    <string name="about_version">Versión %1$s</string>
+    <string name="about_description">Mira tus cámaras Xiaomi en vivo en tu TV, con sonido, giro e inclinación y algunos controles rápidos.</string>
+    <string name="about_disclaimer">No está afiliada, patrocinada ni respaldada por Xiaomi. Xiaomi y Mi son marcas de sus respectivos dueños.</string>
+    <string name="about_credits">Construida sobre el bridge de xiaomi-camera-viewer de Luboš Hnaníček y sobre go2rtc de Alexey Khit (ambos con licencia MIT), y sobre AndroidX y Jetpack Compose (licencia Apache 2.0).</string>
+    <string name="about_copyright">© 2026 Agustín Cantero</string>
+
+    <!-- Diálogo de cierre de sesión -->
+    <string name="signout_title">¿Cerrar sesión?</string>
+    <string name="signout_message">Tendrás que iniciar sesión de nuevo para ver tus cámaras.</string>
+
+    <!-- Vista en vivo -->
+    <string name="live_connecting">Conectando…</string>
+    <string name="live_waiting_picture">Esperando la imagen…</string>
+    <string name="live_reconnecting">Se perdió la conexión. Reintentando en %1$d s…</string>
+    <string name="live_failed">No se pudo conectar: %1$s</string>
+    <string name="live_status">En vivo · %1$s · %2$s</string>
+    <string name="live_status_size">%1$dx%2$d</string>
+    <string name="live_listen">Escuchar</string>
+    <string name="live_mute">Silenciar</string>
+    <string name="live_quality">Calidad</string>
+    <string name="live_light">Luz</string>
+    <string name="live_light_on">Encendida</string>
+    <string name="live_light_off">Apagada</string>
+    <string name="live_light_busy">Aplicando…</string>
+    <string name="live_fit">Ajuste</string>
+    <string name="fit_full">Completo</string>
+    <string name="fit_95">95 %</string>
+    <string name="fit_90">90 %</string>
+    <string name="live_favorite">Favorita</string>
+    <string name="live_audio_unsupported">Esta cámara envía el audio en un formato que este dispositivo no puede reproducir.</string>
+    <string name="quality_auto">Automática</string>
+    <string name="quality_sd">Estándar</string>
+    <string name="quality_hd">Alta</string>
+    <string name="quality_badge_auto">AUTO</string>
+    <string name="quality_badge_sd">SD</string>
+    <string name="quality_badge_hd">HD</string>
+    <string name="ptz_left">Girando a la izquierda</string>
+    <string name="ptz_right">Girando a la derecha</string>
+    <string name="ptz_up">Inclinando hacia arriba</string>
+    <string name="ptz_down">Inclinando hacia abajo</string>
+    <string name="unit_mbps">%1$s Mbps</string>
+    <string name="unit_kbps">%1$d kbps</string>
+</resources>

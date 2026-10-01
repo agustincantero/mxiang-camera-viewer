@@ -1,0 +1,151 @@
+package api
+
+import (
+	"encoding/json"
+	"testing"
+)
+
+func decode(t *testing.T, payload []byte) map[string]any {
+	t.Helper()
+	var out map[string]any
+	if err := json.Unmarshal(payload, &out); err != nil {
+		t.Fatalf("response is not valid JSON: %v (%s)", err, payload)
+	}
+	return out
+}
+
+// Every response, success or failure, must carry an "ok" member: the C side
+// has exactly one code path for reading results.
+func TestHandleCallAlwaysReturnsEnvelope(t *testing.T) {
+	methods := []string{
+		"login.begin",
+		"login.captcha",
+		"login.verify",
+		"login.token",
+		"account.forget",
+		"device.list",
+		"miot.get",
+		"miot.set",
+		"miot.action",
+		"nonsense.method",
+	}
+
+	for _, method := range methods {
+		t.Run(method, func(t *testing.T) {
+			out := decode(t, HandleCall(method, []byte("{}")))
+			if _, present := out["ok"]; !present {
+				t.Errorf("response for %s has no ok member: %v", method, out)
+			}
+		})
+	}
+}
+
+func TestUnknownMethodIsRejected(t *testing.T) {
+	out := decode(t, HandleCall("does.not.exist", nil))
+
+	if out["ok"] != false {
+		t.Errorf("expected ok=false, got %v", out["ok"])
+	}
+	if out["error"] == nil || out["error"] == "" {
+		t.Error("expected an explanatory error message")
+	}
+}
+
+func TestMalformedRequestIsRejected(t *testing.T) {
+	out := decode(t, HandleCall("login.begin", []byte("{not json")))
+
+	if out["ok"] != false {
+		t.Errorf("expected ok=false for malformed JSON, got %v", out["ok"])
+	}
+}
+
+// An empty request body is treated as an empty object rather than crashing,
+// because the C caller may legitimately pass NULL for a no-argument method.
+func TestEmptyRequestIsTreatedAsEmptyObject(t *testing.T) {
+	out := decode(t, HandleCall("account.forget", nil))
+
+	if out["ok"] != true {
+		t.Errorf("expected account.forget with no arguments to succeed, got %v", out)
+	}
+}
+
+func TestIsDualLensModel(t *testing.T) {
+	tests := []struct {
+		model string
+		want  bool
+	}{
+		{"isa.camera.500dh", true},
+		{"isa.camera.hlmax", true},
+		{"vendor.camera.CW500", true},
+		{"isa.camera.hlc8a", false},
+		// CW700S uses two focal lengths for one hybrid-zoom view. Do not put it
+		// through the CW500 independent-channel and packet-tag path without a
+		// hardware capture proving that it exposes both feeds that way.
+		{"isa.camera.700sa", false},
+		{"chuangmi.camera.046c04", false},
+	}
+
+	for _, tt := range tests {
+		if got := isDualLensModel(tt.model); got != tt.want {
+			t.Errorf("isDualLensModel(%q) = %v, want %v", tt.model, got, tt.want)
+		}
+	}
+}
+
+func TestLensListAcceptsAScalarOrAnArray(t *testing.T) {
+	var l lensList
+	if err := json.Unmarshal([]byte(`1`), &l); err != nil {
+		t.Fatalf("scalar: %v", err)
+	}
+	if len(l) != 1 || l[0] != 1 {
+		t.Fatalf("scalar = %v, want [1]", l)
+	}
+	if err := json.Unmarshal([]byte(`[0,1]`), &l); err != nil {
+		t.Fatalf("array: %v", err)
+	}
+	if len(l) != 2 || l[0] != 0 || l[1] != 1 {
+		t.Fatalf("array = %v, want [0 1]", l)
+	}
+}
+
+func TestLoginRequiresCredentials(t *testing.T) {
+	out := decode(t, HandleCall("login.begin", []byte(`{"username":"","password":""}`)))
+
+	if out["ok"] != false {
+		t.Error("expected empty credentials to be rejected before any network call")
+	}
+}
+
+func TestCallsAgainstAnUnknownAccountFail(t *testing.T) {
+	for _, method := range []string{"device.list", "miot.get", "miot.set", "miot.action"} {
+		t.Run(method, func(t *testing.T) {
+			out := decode(t, HandleCall(method, []byte(`{"user_id":"nobody","did":"1"}`)))
+			if out["ok"] != false {
+				t.Errorf("expected %s to fail for an account that is not signed in", method)
+			}
+		})
+	}
+}
+
+func TestStreamOpenRequiresDidAndAddress(t *testing.T) {
+	session, response := OpenStream([]byte(`{"user_id":"nobody"}`))
+
+	if session != nil {
+		t.Error("expected no session for an incomplete request")
+	}
+	out := decode(t, response)
+	if out["ok"] != false {
+		t.Errorf("expected ok=false, got %v", out)
+	}
+}
+
+func TestErrorResponseIsAlwaysParseable(t *testing.T) {
+	out := decode(t, errString("failure with %q and %d", "quotes\"inside", 42))
+
+	if out["ok"] != false {
+		t.Error("expected ok=false")
+	}
+	if out["error"] == nil {
+		t.Error("expected an error member")
+	}
+}

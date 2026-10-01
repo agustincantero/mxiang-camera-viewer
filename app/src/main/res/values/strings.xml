@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mxiang Camera Viewer</string>
+
+    <!-- Shared actions -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_sign_out">Sign out</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_retry">Try again</string>
+    <string name="action_continue">Continue</string>
+
+    <!-- Sign in -->
+    <string name="login_title">Sign in to watch your cameras</string>
+    <string name="login_subtitle">Use your Xiaomi account.</string>
+    <string name="login_field_user">Email or phone</string>
+    <string name="login_field_password">Password</string>
+    <string name="login_region_label">Region</string>
+    <string name="login_region_title">Select your region</string>
+    <string name="login_action">Sign in</string>
+    <string name="login_hint_challenge">If Xiaomi asks for a captcha or a two-step code, it appears here.</string>
+    <string name="login_working">Signing in…</string>
+    <string name="login_captcha_title">Type the letters you see</string>
+    <string name="login_captcha_subtitle">Xiaomi wants to check that you are not a robot. Type the letters shown in the picture.</string>
+    <string name="login_captcha_field">Captcha</string>
+    <string name="login_verify_title">Enter the verification code</string>
+    <string name="login_verify_sent">Xiaomi sent a code to %1$s.</string>
+    <string name="login_verify_sent_unknown">Xiaomi sent you a verification code.</string>
+    <string name="login_verify_field">Code</string>
+    <string name="login_error">Could not sign in: %1$s</string>
+    <string name="login_session_expired">Your session expired. Sign in again.</string>
+    <string name="login_missing_fields">Enter your email or phone and your password.</string>
+
+    <!-- Regions -->
+    <string name="region_default">China (default)</string>
+    <string name="region_de">Germany (Europe)</string>
+    <string name="region_i2">India</string>
+    <string name="region_ru">Russia</string>
+    <string name="region_sg">Singapore</string>
+    <string name="region_us">United States</string>
+
+    <!-- Cameras -->
+    <string name="cameras_title">Cameras</string>
+    <string name="cameras_loading">Looking for your cameras…</string>
+    <string name="cameras_empty">No cameras found in this account.</string>
+    <string name="cameras_error">Could not load the cameras: %1$s</string>
+    <string name="cameras_lens_2">%1$s (lens 2)</string>
+    <string name="cameras_detail">%1$s · %2$s</string>
+    <string name="cameras_address_unknown">address not reported</string>
+    <string name="cd_camera">Camera</string>
+    <string name="cd_refresh">Refresh cameras</string>
+    <string name="cd_favorite_camera">Favorite camera</string>
+    <string name="cd_account">Account</string>
+
+    <!-- Account -->
+    <string name="account_title">Account</string>
+    <string name="account_user_id">User ID</string>
+    <string name="account_region">Region</string>
+    <string name="about_button">About</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_description">Watch your Xiaomi cameras live on your TV, with sound, pan and tilt, and a few quick controls.</string>
+    <string name="about_disclaimer">Not affiliated with, sponsored by or endorsed by Xiaomi. Xiaomi and Mi are trademarks of their respective owners.</string>
+    <string name="about_credits">Built on the xiaomi-camera-viewer bridge by Luboš Hnaníček and on go2rtc by Alexey Khit (both MIT License), and on AndroidX and Jetpack Compose (Apache License 2.0).</string>
+    <string name="about_copyright">© 2026 Agustín Cantero</string>
+
+    <!-- Sign out dialog -->
+    <string name="signout_title">Sign out?</string>
+    <string name="signout_message">You will need to sign in again to see your cameras.</string>
+
+    <!-- Live view -->
+    <string name="live_connecting">Connecting…</string>
+    <string name="live_waiting_picture">Waiting for the picture…</string>
+    <string name="live_reconnecting">Connection lost. Retrying in %1$d s…</string>
+    <string name="live_failed">Could not connect: %1$s</string>
+    <string name="live_status">Live · %1$s · %2$s</string>
+    <string name="live_status_size">%1$dx%2$d</string>
+    <string name="live_listen">Listen</string>
+    <string name="live_mute">Mute</string>
+    <string name="live_quality">Quality</string>
+    <string name="live_light">Light</string>
+    <string name="live_light_on">On</string>
+    <string name="live_light_off">Off</string>
+    <string name="live_light_busy">Working…</string>
+    <string name="live_fit">Fit</string>
+    <string name="fit_full">Full</string>
+    <string name="fit_95">95%</string>
+    <string name="fit_90">90%</string>
+    <string name="live_favorite">Favorite</string>
+    <string name="live_audio_unsupported">This camera sends audio in a format this device cannot play.</string>
+    <string name="quality_auto">Automatic</string>
+    <string name="quality_sd">Standard</string>
+    <string name="quality_hd">High</string>
+    <string name="quality_badge_auto">AUTO</string>
+    <string name="quality_badge_sd">SD</string>
+    <string name="quality_badge_hd">HD</string>
+    <string name="ptz_left">Panning left</string>
+    <string name="ptz_right">Panning right</string>
+    <string name="ptz_up">Tilting up</string>
+    <string name="ptz_down">Tilting down</string>
+    <string name="unit_mbps">%1$s Mbps</string>
+    <string name="unit_kbps">%1$d kbps</string>
+</resources>
